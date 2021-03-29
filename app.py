@@ -7,6 +7,7 @@ app = Flask(__name__)
 cors = CORS(app)
 
 app.config['CORS_HEADERS'] = 'Content-Type'
+musicFile = "music_list.json"
 
 
 @app.route('/')
@@ -37,19 +38,23 @@ def postPing():
 @cross_origin()
 def addSong():
     print('[/addSong] REQUEST', request)
-    song = request.data
-    with open("music_list.json", "w") as jsonFile:
-        json.dump(song, jsonFile)
-    return True
+    song = request.get_json()
+
+    jsonObj = read_json_file(musicFile)
+    jsonObj['songs'].append(song)
+
+    with open(musicFile, "w") as jsonFile:
+        json.dump(dict(jsonObj), jsonFile)
+    return {"message": "success"}
 
 
 @app.route('/getMusicDict', methods=['GET'])
 @cross_origin()
 def getMusicDict():
     print('[/getMusicDict] REQUEST', request)
-    return read_json_file("music_list.json")
+    return read_json_file(musicFile)
 
 
 def read_json_file(filename: str):
-    with open(filename) as f_in:
-        return json.load(f_in)
+    with open(filename) as jsonFile:
+        return json.load(jsonFile)
