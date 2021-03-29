@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
 
@@ -29,3 +31,15 @@ def getReq():
 def postPing():
     print('[/ping] REQUEST', request)
     return request.data
+
+
+@app.route('/getMusicDict', methods=['GET'])
+@cross_origin()
+def getMusicDict():
+    print('[/getMusicDict] REQUEST', request)
+    return read_json_file("music_list.json")
+
+
+def read_json_file(filename: str):
+    with open(filename) as f_in:
+        return json.load(f_in)

@@ -1,0 +1,28 @@
+{
+  "songs": [
+    {
+      "id": 1,
+      "song": "Bohemian Rhapsody",
+      "artist": "Queen",
+      "album": null
+    },
+    {
+      "id": 2,
+      "song": "Lemon Tree",
+      "artist": "Fools Garden",
+      "album": null
+    },
+    {
+      "id": 3,
+      "song": "Why Still Bother",
+      "artist": "ITCHY",
+      "album": null
+    },
+    {
+      "id": 4,
+      "song": "Brandon Marlow",
+      "artist": "Valaire",
+      "album": null
+    }
+  ]
+}
