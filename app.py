@@ -33,6 +33,16 @@ def postPing():
     return request.data
 
 
+@app.route('/addSong', methods=['POST'])
+@cross_origin()
+def addSong():
+    print('[/addSong] REQUEST', request)
+    song = request.data
+    with open("music_list.json", "w") as jsonFile:
+        json.dump(song, jsonFile)
+    return True
+
+
 @app.route('/getMusicDict', methods=['GET'])
 @cross_origin()
 def getMusicDict():
