@@ -16,9 +16,15 @@ idCounter = -1
 @app.before_first_request
 def init():
     global idCounter
+    print('INIT')
     songFile = read_json_file(musicFile)
     songs = songFile['songs']
-    idCounter = len(songs)
+
+    for song in songs:
+        for key, value in song.items():
+            if key == 'id' and idCounter < value:
+                idCounter = value
+    print('IDCOUNTER:', idCounter)
 
 
 @app.route('/')
