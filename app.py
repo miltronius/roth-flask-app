@@ -68,6 +68,22 @@ def addSong():
             }
 
 
+@app.route('/updateSong', methods=['POST'])
+@cross_origin()
+def updateSong():
+    print('[/updateSong] REQUEST', request)
+    newSong = request.get_json()
+
+    # replace newly updated song
+    jsonObj = read_json_file(musicFile)
+    jsonObj['songs'] = [newSong if obj['id'] == newSong['id'] else obj for obj in jsonObj['songs']]
+
+    with open(musicFile, 'w') as jsonFile:
+        json.dump(dict(jsonObj), jsonFile)
+
+    return {'message': 'success'}
+
+
 @app.route('/getMusicDict', methods=['GET'])
 @cross_origin()
 def getMusicDict():
