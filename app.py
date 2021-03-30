@@ -84,6 +84,24 @@ def updateSong():
     return {'message': 'success'}
 
 
+@app.route('/deleteSong', methods=['POST'])
+@cross_origin()
+def deleteSong():
+    print('[/deleteSong] REQUEST', request)
+    songToBeDeleted = request.get_json()
+
+    print('SONG TO BE DELETED:', songToBeDeleted)
+
+    # remove song
+    jsonObj = read_json_file(musicFile)
+    jsonObj['songs'].remove(songToBeDeleted)
+
+    with open(musicFile, 'w') as jsonFile:
+        json.dump(dict(jsonObj), jsonFile)
+
+    return {'message': 'success'}
+
+
 @app.route('/getMusicDict', methods=['GET'])
 @cross_origin()
 def getMusicDict():
