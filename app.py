@@ -7,7 +7,18 @@ app = Flask(__name__)
 cors = CORS(app)
 
 app.config['CORS_HEADERS'] = 'Content-Type'
+
+# Variables
 musicFile = "music_list.json"
+idCounter = -1
+
+
+@app.before_first_request
+def init():
+    global idCounter
+    songFile = read_json_file(musicFile)
+    songs = songFile['songs']
+    idCounter = len(songs)
 
 
 @app.route('/')
@@ -40,12 +51,21 @@ def addSong():
     print('[/addSong] REQUEST', request)
     song = request.get_json()
 
+    # add id to object
+    global idCounter
+    idCounter += 1
+    song['id'] = idCounter
+
+    # append song to json file
     jsonObj = read_json_file(musicFile)
     jsonObj['songs'].append(song)
 
-    with open(musicFile, "w") as jsonFile:
+    with open(musicFile, 'w') as jsonFile:
         json.dump(dict(jsonObj), jsonFile)
-    return {"message": "success"}
+
+    return {'message': 'success',
+            'id': idCounter
+            }
 
 
 @app.route('/getMusicDict', methods=['GET'])
