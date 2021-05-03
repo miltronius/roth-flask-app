@@ -3,7 +3,7 @@
     {
       "album": "",
       "artist": "Queen",
-      "song": "Bohemian Rhapsody"
+      "song": "Bohemian Rhapsody",
       "uuid": "3fec5dfd-b052-4ff0-aa02-84c78738f1c3"
     },
     {
@@ -15,7 +15,7 @@
     {
       "song": "Waterloo",
       "artist": "ABBA",
-      "album": "Waterloo"
+      "album": "Waterloo",
       "uuid": "2ebc9d42-2fae-4fba-a4d5-f4f4f009391f"
     },
     {
