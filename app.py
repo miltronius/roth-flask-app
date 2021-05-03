@@ -1,4 +1,5 @@
 import json
+import uuid
 
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
@@ -10,21 +11,11 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Variables
 musicFile = "music_list.json"
-idCounter = -1
 
 
 @app.before_first_request
 def init():
-    global idCounter
     print('INIT')
-    songFile = read_json_file(musicFile)
-    songs = songFile['songs']
-
-    for song in songs:
-        for key, value in song.items():
-            if key == 'id' and idCounter < value:
-                idCounter = value
-    print('IDCOUNTER:', idCounter)
 
 
 @app.route('/')
@@ -39,7 +30,7 @@ def hello_world():
 def getReq():
     print('[/getReq] REQUEST', request)
     return {
-        'gurke': 'asd',
+        'lorem': 'ipsum',
         'age': 28
     }
 
@@ -57,10 +48,9 @@ def addSong():
     print('[/addSong] REQUEST', request)
     song = request.get_json()
 
-    # add id to object
-    global idCounter
-    idCounter += 1
-    song['id'] = idCounter
+    # add uuid to object
+    songUuid = uuid.uuid4()
+    song['uuid'] = str(songUuid)  # evt str(...)
 
     # append song to json file
     jsonObj = read_json_file(musicFile)
@@ -70,7 +60,7 @@ def addSong():
         json.dump(dict(jsonObj), jsonFile)
 
     return {'message': 'success',
-            'id': idCounter
+            'uuid': songUuid
             }
 
 
@@ -82,7 +72,7 @@ def updateSong():
 
     # replace newly updated song
     jsonObj = read_json_file(musicFile)
-    jsonObj['songs'] = [newSong if obj['id'] == newSong['id'] else obj for obj in jsonObj['songs']]
+    jsonObj['songs'] = [newSong if obj['uuid'] == newSong['uuid'] else obj for obj in jsonObj['songs']]
 
     with open(musicFile, 'w') as jsonFile:
         json.dump(dict(jsonObj), jsonFile)

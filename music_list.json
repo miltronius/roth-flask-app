@@ -1,1 +1,34 @@
-{"songs": [{"album": "", "artist": "Queen", "id": 1, "song": "Bohemian Rhapsody"}, {"song": "Hells Bells", "artist": "AC/DC", "album": "Back In Black", "id": 5}, {"song": "Waterloo", "artist": "ABBA", "album": "Waterloo", "id": 6}, {"song": "Dirty Harry", "artist": "Gorillaz", "album": "Demon Days", "id": 7}, {"song": "Red Flag", "artist": "Billy Talent", "album": "Billy Talent II", "id": 8}]}
+{
+  "songs": [
+    {
+      "album": "",
+      "artist": "Queen",
+      "song": "Bohemian Rhapsody"
+      "uuid": "3fec5dfd-b052-4ff0-aa02-84c78738f1c3"
+    },
+    {
+      "song": "Hells Bells",
+      "artist": "AC/DC",
+      "album": "Back In Black",
+      "uuid": "a8fc0634-e632-4601-9fc1-e0dfb86f1aef"
+    },
+    {
+      "song": "Waterloo",
+      "artist": "ABBA",
+      "album": "Waterloo"
+      "uuid": "2ebc9d42-2fae-4fba-a4d5-f4f4f009391f"
+    },
+    {
+      "song": "Dirty Harry",
+      "artist": "Gorillaz",
+      "album": "Demon Days",
+      "uuid": "5616c904-54ed-4cbf-8852-af5ff37091f1"
+    },
+    {
+      "song": "Red Flag",
+      "artist": "Billy Talent",
+      "album": "Billy Talent II",
+      "uuid": "0703c0b2-f133-4e21-aa2b-93e3cb304214"
+    }
+  ]
+}
